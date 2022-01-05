@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Person
+from .models import Person, Event
 
 
 def index(request):
@@ -9,5 +9,6 @@ def index(request):
 
 def person(request, pk):
     person = Person.objects.get(id=pk)
-    context = {"person": person}
+    events = person.event_set.all()
+    context = {"person": person, "events": events}
     return render(request, 'root/person.html', context)

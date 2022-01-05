@@ -7,3 +7,8 @@ bio: {{ person.bio }}
 {% for social_link in person.socials %}
     {{ social_link.type }}: {{ social_link.link }} <br>
 {% endfor %}
+<br>
+events:
+{% for event in events %}
+    {{ event.title }} <br>
+{% endfor %}
