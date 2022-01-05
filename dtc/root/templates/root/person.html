@@ -1,0 +1,9 @@
+name: {{ person.name }}
+<br>
+bio: {{ person.bio }}
+<br>
+<img src="{{ person.profile_image }}" alt="profile image"/>
+<br>
+{% for social_link in person.socials %}
+    {{ social_link.type }}: {{ social_link.link }} <br>
+{% endfor %}
