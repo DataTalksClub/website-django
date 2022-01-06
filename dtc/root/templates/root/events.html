@@ -1,0 +1,28 @@
+<h1>Upcoming events</h1>
+<ul>
+{% for event in upcoming_events %}
+<li>
+    <a href="{{ event.event_link }}" target="_blank">{{ event.title }}</a>
+    on {{ event.time }} by 
+    {% for speaker in event.speakers.all %}
+        <a href="{% url 'person' speaker.id %}">{{ speaker.name }}</a>{% if not forloop.last %}, {% endif %}
+    {% endfor %}
+</li>
+{% endfor %}
+</ul>   
+
+<h1>Past events</h1>
+<ul>
+{% for event in past_events %}
+<li>
+    {{ event.title }} on {{ event.time }} by 
+    {% for speaker in event.speakers.all %}
+        <a href="{% url 'person' speaker.id %}">{{ speaker.name }}</a>
+        {% if not forloop.last %}, {% endif %}
+    {% endfor %}
+    {% if event.youtube_link %}
+        (<a href="{{ event.youtube_link }}" target="_blank">watch on youtube</a>)
+    {% endif %}
+</li>
+{% endfor %}
+</ul>  

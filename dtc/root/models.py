@@ -8,7 +8,7 @@ class Person(models.Model):
     name = models.CharField(max_length=200, blank=False, null=False)
     bio = models.TextField(blank=False, null=False)
     profile_image = models.URLField(max_length=200, blank=False, null=False)
-    socials = models.JSONField()
+    socials = models.JSONField(blank=True, null=True)
         
     def __str__(self):
         return str(self.id)
