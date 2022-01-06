@@ -1,7 +1,7 @@
 from django.utils import timezone
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Person, Event, Book
+from .models import Person, Event, Book, Podcast
 
 
 def index(request):
@@ -60,5 +60,18 @@ def book(request, pk):
     context = {"book": book}
 
     return render(request, 'root/book.html', context)
+
+def podcast(request):
+    episodes = Podcast.objects.all()
+    episodes_grouped = {}
+    for episode in episodes:
+        season = episode.season
+        if season not in episodes_grouped:
+            episodes_grouped[season] = []
+        episodes_grouped[season].append(episode)
+    print(episodes_grouped)
+
+    context = {"episodes": episodes_grouped}
+    return render(request, 'root/podcast.html', context)
 
 

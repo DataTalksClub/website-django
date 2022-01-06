@@ -49,6 +49,31 @@ class Book(models.Model):
 
     links = models.JSONField()
 
+    def __str__(self):
+        return self.title
+
+class Podcast(models.Model):
+    id = models.SlugField(max_length=100, blank=False, null=False, unique=True, primary_key=True, editable=True)
+
+    title = models.CharField(max_length=200)
+    guests = models.ManyToManyField('Person', blank=False)
+    preview_image = models.URLField(max_length=200, blank=True, null=True)
+
+    season = models.IntegerField(blank=False, null=False)
+    episode = models.IntegerField(blank=False, null=False)
+
+    links = models.JSONField()
+
+    transcript = models.JSONField()
+
+    def __str__(self):
+        return self.title
+
+
+
+    
+
+
 
 
 

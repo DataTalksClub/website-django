@@ -1,0 +1,16 @@
+<h1>Podcast</h1>
+
+{% for key, values in episodes.items %}
+    <h2>Season #{{ key }}</h2>
+    <ul>
+    {% for episode in values %}
+        <li>
+            {{ episode.title }} with
+            {% for guest in episode.guests.all %}
+                <a href="{% url 'person' guest.id %}">{{ guest.name }}</a>{% if not forloop.last %}, {% endif %}
+            {% endfor %}
+        </li>
+    {% endfor %}
+    </ul>
+{% endfor %}
+    
