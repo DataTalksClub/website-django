@@ -1,7 +1,7 @@
 from django.utils import timezone
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Person, Event
+from .models import Person, Event, Book
 
 
 def index(request):
@@ -34,4 +34,25 @@ def events(request):
     }
 
     return render(request, 'root/events.html', context)
+
+def books(request):
+    books = Book.objects.all()
+
+    today = timezone.now().date()
+    upcoming_books = []
+    past_books = []
+
+    for book in books:
+        if today > book.end_date:
+            past_books.append(book)
+        else:
+            upcoming_books.append(book)
+
+    context = {
+        "past_books": past_books, 
+        "upcoming_books": upcoming_books
+    }
+
+    return render(request, 'root/books.html', context)
+
 

@@ -1,0 +1,25 @@
+<h1>Upcoming books</h1>
+<ul>
+{% for book in upcoming_books %}
+<li>
+    <a href="#" target="_blank">{{ book.title }}</a>
+    from {{ book.start_date }} to {{ book.end_date }} by 
+    {% for author in book.authors.all %}
+        <a href="{% url 'person' author.id %}">{{ author.name }}</a>{% if not forloop.last %}, {% endif %}
+    {% endfor %}
+</li>
+{% endfor %}
+</ul>
+
+<h1>Archive</h1>
+<ul>
+{% for book in past_books %}
+<li>
+    <a href="#" target="_blank">{{ book.title }}</a>
+    from {{ book.start_date }} to {{ book.end_date }} by 
+    {% for author in book.authors.all %}
+        <a href="{% url 'person' author.id %}">{{ author.name }}</a>{% if not forloop.last %}, {% endif %}
+    {% endfor %}
+</li>
+{% endfor %}
+</ul>  
