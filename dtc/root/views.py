@@ -55,4 +55,10 @@ def books(request):
 
     return render(request, 'root/books.html', context)
 
+def book(request, pk):
+    book = Book.objects.get(id=pk)
+    context = {"book": book}
+
+    return render(request, 'root/book.html', context)
+
 

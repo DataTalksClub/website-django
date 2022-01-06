@@ -1,0 +1,13 @@
+<h1>{{ book.title }}</h1>
+by {% for author in book.authors.all %}
+<a href="{% url 'person' author.id %}">{{ author.name }}</a>{% if not forloop.last %}, {% endif %}
+{% endfor %}
+<hr>
+<br>
+<p>The book of the week from {{ book.start_date }} to {{ book.end_date }}</p>
+<img src="{{ book.cover_image }}" alt="cover image"/>
+<p>{{ book.description }}</p>
+
+{% for link in book.links %}
+    <a href="{{ link.link }}" target="_blank">{{ link.text }}</a>  <br>
+{% endfor %}
