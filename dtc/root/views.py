@@ -75,3 +75,11 @@ def podcast(request):
     return render(request, 'root/podcast.html', context)
 
 
+def episode(request, pk):
+    episode = Podcast.objects.get(id=pk)
+    context = {"episode": episode}
+
+    return render(request, 'root/episode.html', context)
+
+
+

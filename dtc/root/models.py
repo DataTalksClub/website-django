@@ -52,6 +52,7 @@ class Book(models.Model):
     def __str__(self):
         return self.title
 
+
 class Podcast(models.Model):
     id = models.SlugField(max_length=100, blank=False, null=False, unique=True, primary_key=True, editable=True)
 
@@ -62,12 +63,21 @@ class Podcast(models.Model):
     season = models.IntegerField(blank=False, null=False)
     episode = models.IntegerField(blank=False, null=False)
 
-    links = models.JSONField()
+    episode_links = models.JSONField()
+
+    links_from_guests = models.JSONField()
+
 
     transcript = models.JSONField()
 
     def __str__(self):
         return self.title
+
+
+# class Article(models.Model):
+
+
+
 
 
 

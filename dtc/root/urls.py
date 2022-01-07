@@ -10,4 +10,5 @@ urlpatterns = [
     path('book/<str:pk>.html', views.book, name="book"),
 
     path('podcast.html', views.podcast, name="podcast"),
+    path('podcast/<str:pk>.html', views.episode, name="episode"),
 ]

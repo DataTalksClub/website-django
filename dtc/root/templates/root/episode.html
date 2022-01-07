@@ -1,0 +1,16 @@
+<h1>{{ episode.title }}</h1>
+
+<p>Season {{ episode.season }}, episode {{episode.episode}} 
+    podcast with 
+    {% for guest in episode.guests.all %}
+        <a href="{% url 'person' guest.id %}">{{ guest.name }}</a>{% if not forloop.last %}, {% endif %}
+    {% endfor %}
+</p>
+
+{% for platform, link in episode.episode_links.items %}
+    {{ platform }} : {{ link }} <br>
+{% endfor %}
+
+{% for link in episode.links_from_guests %}
+    <a href="{{ link.link }}" target="_blank">{{ link.text }}</a>  <br>
+{% endfor %}

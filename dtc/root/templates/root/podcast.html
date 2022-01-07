@@ -5,7 +5,7 @@
     <ul>
     {% for episode in values %}
         <li>
-            {{ episode.title }} with
+            <a href="{% url 'episode' episode.id %}">{{ episode.title }}</a> with
             {% for guest in episode.guests.all %}
                 <a href="{% url 'person' guest.id %}">{{ guest.name }}</a>{% if not forloop.last %}, {% endif %}
             {% endfor %}
