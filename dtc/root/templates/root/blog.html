@@ -1,0 +1,11 @@
+<h1>Latest blog posts</h1>
+<ul>
+{% for post in posts %}
+    <li>
+        <a href="{% url 'post' post.id %}">{{ post.title }}</a> by
+        {% for author in post.authors.all %}
+            <a href="{% url 'person' author.id %}">{{ author.name }}</a>{% if not forloop.last %}, {% endif %}
+        {% endfor %}
+    </li>
+{% endfor %}
+</ul>

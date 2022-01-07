@@ -1,7 +1,7 @@
 from django.utils import timezone
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Person, Event, Book, Podcast
+from .models import Post, Person, Event, Book, Podcast, Tag
 
 
 def index(request):
@@ -80,6 +80,19 @@ def episode(request, pk):
     context = {"episode": episode}
 
     return render(request, 'root/episode.html', context)
+
+def blog(request):
+    posts = Post.objects.all()
+    context = {"posts": posts}
+    return render(request, 'root/blog.html', context)
+
+def post(request, pk):
+    post = Post.objects.get(id=pk)
+    context = {"post": post}
+
+    return render(request, 'root/post.html', context)
+
+
 
 
 

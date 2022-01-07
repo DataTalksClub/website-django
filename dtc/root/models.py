@@ -74,7 +74,39 @@ class Podcast(models.Model):
         return self.title
 
 
-# class Article(models.Model):
+class Post(models.Model):
+    id = models.SlugField(max_length=100, blank=False, null=False, unique=True, primary_key=True, editable=True)
+
+    title = models.CharField(max_length=200)
+    subtitle = models.CharField(max_length=300, blank=True, null=True)
+    meta_description = models.TextField(blank=False, null=False)
+   
+    preview_image = models.URLField(max_length=200, blank=True, null=True)
+    authors = models.ManyToManyField('Person', blank=False)
+
+    content = models.TextField(null=False, blank=False)
+    draft = models.BooleanField(default=False, null=False)
+    created_at = models.DateField(auto_now_add=True)
+    modified_at = models.DateField(auto_now_add=True)
+
+    tags = models.ManyToManyField('Tag', blank=True)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        ordering = ['created_at']
+
+
+class Tag(models.Model):
+    id = models.SlugField(max_length=100, blank=False, null=False, unique=True, primary_key=True, editable=True)
+
+    name = models.CharField(max_length=200)
+    
+    def __str__(self):
+        return self.name
+
+
 
 
 
