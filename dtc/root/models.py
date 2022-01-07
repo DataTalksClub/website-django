@@ -107,6 +107,25 @@ class Tag(models.Model):
         return self.name
 
 
+class SpecialPost(models.Model):
+    id = models.CharField(max_length=100, blank=False, null=False, unique=True, primary_key=True, editable=True)
+
+    title = models.CharField(max_length=200)
+    subtitle = models.CharField(max_length=300, blank=True, null=True)
+    meta_description = models.TextField(blank=False, null=False)
+   
+    preview_image = models.URLField(max_length=200, blank=True, null=True)
+    
+    content = models.TextField(null=False, blank=False)
+   
+    def __str__(self):
+        return self.title
+
+    
+
+
+
+
 
 
 

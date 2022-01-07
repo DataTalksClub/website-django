@@ -13,4 +13,7 @@ urlpatterns = [
     path('podcast/<str:pk>.html', views.episode, name="episode"),
     path('blog.html', views.blog, name="blog"),
     path('blog/<str:pk>.html', views.post, name="post"),
+
+    path('<path:pk>.html', views.special_post, name="special-post"),
+
 ]
