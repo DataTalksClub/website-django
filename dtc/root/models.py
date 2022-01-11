@@ -121,6 +121,26 @@ class SpecialPost(models.Model):
     def __str__(self):
         return self.title
 
+class Tool(models.Model):
+    id = models.SlugField(max_length=100, blank=False, null=False,unique=True, primary_key=True, editable=True)
+
+    title = models.CharField(max_length=200)
+    description = models.TextField(null=True, blank=True)
+
+    speakers = models.ManyToManyField('Person', blank=False)
+
+    icon_picture = models.URLField(max_length=200, blank=False, null=False)
+    preview_image = models.URLField(max_length=200, blank=True, null=True)
+
+    youtube_link = models.URLField(max_length=200, blank=True, null=True)
+    links = models.JSONField()
+
+    tags = models.ManyToManyField('Tag', blank=True)
+
+    def __str__(self):
+        return self.title
+
+
     
 
 

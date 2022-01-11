@@ -14,6 +14,8 @@ urlpatterns = [
     path('blog.html', views.blog, name="blog"),
     path('blog/<str:pk>.html', views.post, name="post"),
 
+    
+    path('tools.html', views.tools, name="tools"),
     path('<path:pk>.html', views.special_post, name="special-post"),
 
 ]

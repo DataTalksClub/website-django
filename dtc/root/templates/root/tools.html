@@ -1,0 +1,17 @@
+<h1>Tools</h1>
+<ul>
+    {% for tool in tools %}
+    <li>
+        {{ tool.title }} by 
+        {% for speaker in tool.speakers.all %}
+            <a href="{% url 'person' speaker.id %}">{{ speaker.name }}</a>
+            {% if not forloop.last %}, {% endif %}
+        {% endfor %}
+        {% if tool.youtube_link %}
+            (<a href="{{ tool.youtube_link }}" target="_blank">watch on youtube</a>)
+        {% endif %}
+    </li>
+</ul>
+
+
+{% endfor %}
