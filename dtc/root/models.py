@@ -1,9 +1,8 @@
 from django.db import models
-import uuid
-from django.db.models.base import Model
+
 
 class Person(models.Model):
-    id = models.SlugField(max_length=20, blank=False, null=False,unique=True, primary_key=True, editable=True)
+    id = models.SlugField(max_length=20, blank=False, null=False, unique=True, primary_key=True, editable=True)
 
     name = models.CharField(max_length=200, blank=False, null=False)
     bio = models.TextField(blank=False, null=False)
@@ -12,6 +11,7 @@ class Person(models.Model):
         
     def __str__(self):
         return str(self.id)
+
 
 class Event(models.Model):
     EVENT_TYPE = (
@@ -34,7 +34,7 @@ class Event(models.Model):
 
 
 class Book(models.Model):
-    id = models.SlugField(max_length=100, blank=False, null=False,unique=True, primary_key=True, editable=True)
+    id = models.SlugField(max_length=100, blank=False, null=False, unique=True, primary_key=True, editable=True)
 
     title = models.CharField(max_length=200)
     description = models.TextField(null=True, blank=True)
@@ -121,8 +121,9 @@ class SpecialPost(models.Model):
     def __str__(self):
         return self.title
 
+
 class Tool(models.Model):
-    id = models.SlugField(max_length=100, blank=False, null=False,unique=True, primary_key=True, editable=True)
+    id = models.SlugField(max_length=100, blank=False, null=False, unique=True, primary_key=True, editable=True)
 
     title = models.CharField(max_length=200)
     description = models.TextField(null=True, blank=True)
@@ -136,6 +137,27 @@ class Tool(models.Model):
     links = models.JSONField()
 
     tags = models.ManyToManyField('Tag', blank=True)
+    created_at = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return self.title
+
+class Course(models.Model):
+    id = models.SlugField(max_length=100, blank=False, null=False, unique=True, primary_key=True, editable=True)
+
+    people = models.ManyToManyField('Person', blank=False)
+
+    title = models.CharField(max_length=200)
+    short_description = models.TextField(null=True, blank=True)
+    cover_image = models.URLField(max_length=200, blank=False, null=False)
+    
+    start_date = models.DateField(null=False, blank=False)
+    end_date = models.DateField(null=False, blank=False)
+
+    sylabus = models.JSONField()
+    partners = models.JSONField()
+    registration_link = models.URLField(max_length=200, blank=True, null=True)
+
 
     def __str__(self):
         return self.title

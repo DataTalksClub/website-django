@@ -2,7 +2,7 @@
 <ul>
     {% for tool in tools %}
     <li>
-        {{ tool.title }} by 
+        <a href="{% url 'tool' tool.id %}">{{ tool.title }}</a> by 
         {% for speaker in tool.speakers.all %}
             <a href="{% url 'person' speaker.id %}">{{ speaker.name }}</a>
             {% if not forloop.last %}, {% endif %}

@@ -1,7 +1,7 @@
 from django.utils import timezone
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Post, Person, Event, Book, Podcast, Tag, SpecialPost, Tool
+from .models import Post, Person, Event, Book, Podcast, Tag, SpecialPost, Tool, Course
 
 
 def index(request):
@@ -103,6 +103,25 @@ def tools(request):
     context = {"tools": tools}
 
     return render(request, 'root/tools.html', context)
+
+def tool(request, pk):
+    tool = Tool.objects.get(id=pk)
+    context = {"tool": tool}
+
+    return render(request, 'root/tool.html', context)
+
+def courses(request):
+    courses = Course.objects.all()
+    context = {"courses": courses}
+
+    return render(request, 'root/courses.html', context)
+
+def course(request, pk):
+    course = Course.objects.get(id=pk)
+    context = {"course": course}
+
+    return render(request, 'root/course.html', context)
+
 
 
 

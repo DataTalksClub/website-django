@@ -1,0 +1,21 @@
+<h1>{{ tool.title }}</h1>
+
+<h3>{{ tool.description }}</h3>
+<p>{{ tool.created_at }} by 
+    {% for speaker in tool.speakers.all %}
+    <a href="{% url 'person' speaker.id %}">{{ speaker.name }}</a>{% if not forloop.last %}, {% endif %}
+    {% endfor %} 
+</p>
+<img src="{{ tool.icon_picture }}" alt="icon"/>
+<img src="{{ tool.preview_image }}" alt="preview"/>
+
+<br>
+<a href="{{ tool.youtube_link }}"> watch on youtube </a>
+
+<hr>
+{% for link in tool.links %}
+    <a href="{{ link.link }}" target="_blank">{{ link.text }}</a>  <br>
+{% endfor %}
+<p>{% for tag in tool.tags.all %} 
+    <a href="#">{{ tag.name }}</a>{% endfor %}
+</p>

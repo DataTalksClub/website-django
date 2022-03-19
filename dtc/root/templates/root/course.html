@@ -1,0 +1,23 @@
+<h1>{{ course.title }}</h1>
+
+<h3>{{ course.short_description }}</h3>
+<p> from {{ course.start_date }} to {{ course.end_date}} by 
+    {% for person in course.people.all %}
+    <a href="{% url 'person' person.id %}">{{ person.name }}</a>{% if not forloop.last %}, {% endif %}
+    {% endfor %} 
+</p>
+
+<img src="{{ course.cover_image }}" alt="preview"/>
+
+<br>
+<a href="{{ course.registration_link }}"> Register for the COURSE </a>
+
+<hr>
+{% for line in sylabus %}
+    <a href="{{ line.module }}" target="_blank">{{ line.description }}</a>  <br>
+{% endfor %}
+
+{% for partner in partners %}
+    <a href="{{ partner.link }}" target="_blank">{{ partner.name }}</a>  <br>
+{% endfor %}
+

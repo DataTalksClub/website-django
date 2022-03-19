@@ -1,0 +1,15 @@
+<h1>Courses</h1>
+<ul>
+    {% for course in courses %}
+    <li>
+        <a href="{% url 'course' course.id %}">{{ course.title }}</a> by 
+        {% for person in course.people.all %}
+            <a href="{% url 'person' person.id %}">{{ person.name }}</a>
+            {% if not forloop.last %}, {% endif %}
+        {% endfor %}
+        
+    </li>
+</ul>
+
+
+{% endfor %}
