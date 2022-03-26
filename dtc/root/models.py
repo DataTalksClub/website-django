@@ -66,10 +66,10 @@ class Podcast(models.Model):
 
     episode_links = models.JSONField()
 
-    links_from_guests = models.JSONField()
+    links_from_guests = models.JSONField(null=True)
 
 
-    transcript = models.JSONField()
+    transcript = models.JSONField(null=True)
 
     def __str__(self):
         return self.title
