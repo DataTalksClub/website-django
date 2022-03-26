@@ -48,6 +48,7 @@ class Book(models.Model):
     end_date = models.DateField(null=False, blank=False)
 
     links = models.JSONField()
+    archive = models.JSONField(null=True)
 
     def __str__(self):
         return self.title
