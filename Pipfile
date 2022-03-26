@@ -9,6 +9,7 @@ django = "*"
 [dev-packages]
 python-frontmatter = "*"
 ipykernel = "*"
+tqdm = "*"
 
 [requires]
 python_version = "3.8"
