@@ -1,7 +1,7 @@
 from django.utils import timezone
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Post, Person, Event, Book, Podcast, Tag, SpecialPost, Tool, Course
+from .models import Post, Person, Event, Book, Podcast, Sponsor, Tag, SpecialPost, Tool, Course
 
 
 def index(request):
@@ -121,6 +121,12 @@ def course(request, pk):
     context = {"course": course}
 
     return render(request, 'root/course.html', context)
+
+def sponsors(request):
+    sponsors = Sponsor.objects.all()
+    context = {"sponsors": sponsors}
+
+    return render(request, 'root/sponsors.html', context)
 
 
 

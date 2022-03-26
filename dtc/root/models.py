@@ -162,6 +162,24 @@ class Course(models.Model):
     def __str__(self):
         return self.title
 
+class Sponsor(models.Model):
+    SPONSOR_TYPE = (
+        ('gold', 'gold'),
+        ('silver', 'silver')
+    )
+    id = models.AutoField(unique=True, primary_key=True, editable=False)
+
+    name = models.CharField(max_length=200)
+    description = models.CharField(max_length=200)
+    type = models.CharField(max_length=8, choices=SPONSOR_TYPE)
+    web_site = models.URLField(max_length=200, blank=False, null=False)
+    logo_url = models.URLField(max_length=200, blank=True, null=True)
+    active = models.BooleanField(default=False, null=False)
+    sort_order = models.IntegerField(blank=False, null=False)
+
+    def __str__(self):
+        return self.name
+
 
     
 
