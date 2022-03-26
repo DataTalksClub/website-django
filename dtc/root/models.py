@@ -74,6 +74,8 @@ class Podcast(models.Model):
     def __str__(self):
         return self.title
 
+    class Meta:
+        ordering = [ '-season' ]
 
 class Post(models.Model):
     id = models.SlugField(max_length=100, blank=False, null=False, unique=True, primary_key=True, editable=True)
