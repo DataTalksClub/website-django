@@ -1,7 +1,7 @@
 <h1>{{ post.title }}</h1>
 
 <h3>{{ post.subtitle }}</h3>
-<p>{{ post.created }} by 
+<p>created at {{ post.created_at }} by 
     {% for author in post.authors.all %}
     <a href="{% url 'person' author.id %}">{{ author.name }}</a>{% if not forloop.last %}, {% endif %}
     {% endfor %} 
