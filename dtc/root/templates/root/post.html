@@ -1,3 +1,5 @@
+{% load root_extras %}
+
 <h1>{{ post.title }}</h1>
 
 <h3>{{ post.subtitle }}</h3>
@@ -7,5 +9,5 @@
     {% endfor %} 
 </p>
 
-<p>{{ post.content }}</p>
+<p>{{ post.content| convert_markdown| safe }}</p>
 <p>{% for tag in post.tags.all %} <a href="#">{{ tag.name }}</a>{% endfor %}</p>
