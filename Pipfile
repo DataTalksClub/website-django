@@ -11,6 +11,7 @@ markdown = "*"
 python-frontmatter = "*"
 ipykernel = "*"
 tqdm = "*"
+pyyaml = "*"
 
 [requires]
 python_version = "3.8"
