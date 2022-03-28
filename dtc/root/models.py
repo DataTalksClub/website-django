@@ -133,11 +133,11 @@ class Tool(models.Model):
 
     speakers = models.ManyToManyField('Person', blank=False)
 
-    icon_picture = models.URLField(max_length=200, blank=False, null=False)
+    icon_picture = models.URLField(max_length=200, blank=True, null=False)
     preview_image = models.URLField(max_length=200, blank=True, null=True)
 
     youtube_link = models.URLField(max_length=200, blank=True, null=True)
-    links = models.JSONField()
+    links = models.JSONField(null=True)
 
     tags = models.ManyToManyField('Tag', blank=True)
     created_at = models.DateField(auto_now_add=True)
