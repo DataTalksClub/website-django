@@ -32,6 +32,9 @@ class Event(models.Model):
     def __str__(self):
         return self.title
 
+    class Meta:
+        ordering = [ 'time' ]
+
 
 class Book(models.Model):
     id = models.SlugField(max_length=100, blank=False, null=False, unique=True, primary_key=True, editable=True)
@@ -52,6 +55,8 @@ class Book(models.Model):
 
     def __str__(self):
         return self.title
+
+    
 
 
 class Podcast(models.Model):
@@ -75,7 +80,7 @@ class Podcast(models.Model):
         return self.title
 
     class Meta:
-        ordering = [ '-season' ]
+        ordering = [ '-season', '-episode' ]
 
 class Post(models.Model):
     id = models.SlugField(max_length=100, blank=False, null=False, unique=True, primary_key=True, editable=True)
@@ -98,7 +103,7 @@ class Post(models.Model):
         return self.title
 
     class Meta:
-        ordering = ['created_at']
+        ordering = ['-created_at']
 
 
 class Tag(models.Model):

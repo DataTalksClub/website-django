@@ -1,12 +1,18 @@
 from django.utils import timezone
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Post, Person, Event, Book, Podcast, Sponsor, Tag, SpecialPost, Tool, Course
+from .models import *
+import datetime
 
 
 def index(request):
-    return HttpResponse("Hello, world. You're at the polls index.")
-
+    now = datetime.datetime.today()
+    events_set = Event.objects.filter(time__gte=now).order_by('time')[:2]
+    podcast = Podcast.objects.all()[0]
+    posts_set = Post.objects.all()[:2]
+    book = Book.objects.filter(end_date__gte=now)[0]
+    context = {"events": events_set, "podcast": podcast, "posts": posts_set, "book": book}
+    return render(request, 'root/index.html', context)
 
 def person(request, pk):
     person = Person.objects.get(id=pk)

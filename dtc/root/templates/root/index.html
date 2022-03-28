@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dtc</title>
+</head>
+<body>
+    <h3>Upcoming events</h3>
+    {% for event in events %}
+        {{ event.title }} - {{ event.time }} <br>
+    {% endfor %}
+    <h3>Latest Podcast </h3>
+    {{ podcast.title}}
+    <h3>Latest Articles</h3>
+    {% for post in posts %}
+        {{ post.title }} - {{ post.created_at }} <br>
+    {% endfor %}
+    <h3>Latest Books</h3>
+    {{ book.title }} <hr>
+    {{ book.description }}
+</body>
+</html>
