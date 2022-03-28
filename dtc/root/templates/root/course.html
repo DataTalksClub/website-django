@@ -13,8 +13,13 @@
 <a href="{{ course.registration_link }}"> Register for the COURSE </a>
 
 <hr>
-{% for line in sylabus %}
-    <a href="{{ line.module }}" target="_blank">{{ line.description }}</a>  <br>
+
+{% for line in course.syllabus %}
+    <p>{{ line.title }}</p><br>
+    <p>{{ line.subtitle}}</p><br>
+    <a href="{{ line.link}}">link</a><br>
+    {{ line.start }}<br>
+    {{ line.content }}<br>
 {% endfor %}
 
 {% for partner in partners %}

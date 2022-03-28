@@ -157,7 +157,7 @@ class Course(models.Model):
     start_date = models.DateField(null=False, blank=False)
     end_date = models.DateField(null=False, blank=False)
 
-    sylabus = models.JSONField()
+    syllabus = models.JSONField()
     partners = models.JSONField()
     registration_link = models.URLField(max_length=200, blank=True, null=True)
 
