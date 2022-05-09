@@ -1,5 +1,7 @@
-from rest_framework.decorators import api_view
+
 from rest_framework.response import Response
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from .serializers import PersonSerializer, EventSerializer
 from root.models import Person, Event
 
@@ -7,29 +9,29 @@ from root.models import Person, Event
 @api_view(['GET'])
 def getRoutes(request):
     routes = [
-        {'GET':'api/root/people/id.html'},
-        {'GET':'api/root/people/id'},
+        {'GET':'api/people/'},
+        {'GET':'api/people/id/'},
                        
-        {'GET': 'api/root/events.html'},
+        {'GET': 'api/events.html'},
 
-        {'GET': 'api/root/books.html'},
-        {'GET': 'api/root/book/<str:pk>.html'},
+        {'GET': 'api/books.html'},
+        {'GET': 'api/book/<str:pk>.html'},
 
-        {'GET': 'api/root/podcast.html'},
-        {'GET': 'api/root/podcast/<str:pk>.html'},
+        {'GET': 'api/podcast.html'},
+        {'GET': 'api/podcast/<str:pk>.html'},
         
-        {'GET': 'api/root/blog.html'},
-        {'GET': 'api/root/blog/<str:pk>.html'},
+        {'GET': 'api/blog.html'},
+        {'GET': 'api/blog/<str:pk>.html'},
 
-        {'GET': 'api/root/tools.html'},
-        {'GET': 'api/root/tool/<str:pk>.html'},
+        {'GET': 'api/tools.html'},
+        {'GET': 'api/tool/<str:pk>.html'},
 
-        {'GET': 'api/root/courses.html'},
-        {'GET': 'api/root/course/<str:pk>.html'},
+        {'GET': 'api/courses.html'},
+        {'GET': 'api/course/<str:pk>.html'},
 
-        {'GET': 'api/root/sponsors.html'},
+        {'GET': 'api/sponsors.html'},
 
-        {'GET': 'api/root/<path:pk>.html'},
+        {'GET': 'api/<path:pk>.html'},
 
         
         
@@ -54,3 +56,10 @@ def getEvents(request):
     events = Event.objects.all()
     serializer = EventSerializer(events, many=True)
     return Response(serializer.data)
+
+@api_view(['GET'])
+def getEvent(request, pk):
+    event = Event.objects.get(id=pk)
+    serializer = EventSerializer(event, many=False)
+    return Response(serializer.data)
+
