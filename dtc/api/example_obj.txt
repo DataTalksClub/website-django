@@ -1,0 +1,7 @@
+curl -X POST -H "Content-Type: application/json" \
+    -d '{"id":"aaaaaaa",
+        "name": "AAAAAAA", 
+        "bio": "AAAAAA", 
+        "profile_image":"https://www.google.com",
+        "socials":"oooooooooooo"}' \
+    http://127.0.0.1:8000/api/people/add/

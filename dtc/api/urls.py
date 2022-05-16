@@ -7,8 +7,7 @@ urlpatterns = [
     path('', views.getRoutes),
     # path('obtain-token/', obtain_auth_token),
     
-    path('people/', views.getPeople),
-    path('people/add/', views.addPerson),
+    path('people/', views.people),
     path('people/<str:pk>/', views.personDetails),
     
     path('events/', views.getEvents),
