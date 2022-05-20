@@ -1,0 +1,12 @@
+{
+    "python.pythonPath": "/home/larisa/.local/share/virtualenvs/website-django-i0QUG990/bin/python",
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/*.pyc": true,
+        "**/__pycache__": true
+    }
+}

@@ -56,7 +56,7 @@ def people(request):
 
    
 
-@api_view(['GET', 'DELETE', 'PUT'])
+@api_view(['GET', 'DELETE', 'PATCH'])
 def personDetails(request, pk):
     
     try:
@@ -68,8 +68,8 @@ def personDetails(request, pk):
         serializer = PersonSerializer(person, many=False)
         return Response(serializer.data)
     
-    elif request.method == 'PUT':
-        serializer = PersonSerializer(person, data=request.data)
+    elif request.method == 'PATCH':
+        serializer = PersonSerializer(person, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)

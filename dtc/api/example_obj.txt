@@ -4,4 +4,10 @@ curl -X POST -H "Content-Type: application/json" \
         "bio": "AAAAAA", 
         "profile_image":"https://www.google.com",
         "socials":"oooooooooooo"}' \
-    http://127.0.0.1:8000/api/people/add/
+    http://127.0.0.1:8000/api/people/
+
+
+curl -X PUT -H "Content-Type: application/json" \
+    -d id="valera" -d name="valera" http://127.0.0.1:8000/api/people/11aaaaaaa/
+
+curl -X PATCH -H "Content-Type: application/json" -d '{"name":"SUKA"}' "http://127.0.0.1:8000/api/people/11aaaaaaa/"
