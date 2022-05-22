@@ -38,6 +38,7 @@ def getRoutes(request):
     
     return Response(routes)
 
+######## People views ########
 @api_view(['GET', 'POST'])
 # @permission_classes([IsAuthenticated])
 def people(request):
@@ -79,17 +80,47 @@ def personDetails(request, pk):
         person.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
+######## Events views ########
+@api_view(['GET', 'POST'])
+# @permission_classes([IsAuthenticated])
+def events(request):
+    if request.method == 'GET':
+        events = Event.objects.all()
+        serializer = EventSerializer(events, many=True)
+        return Response(serializer.data)
+    
+    if request.method == 'POST':
+        serializer = EventSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+   
+
+@api_view(['GET', 'DELETE', 'PATCH'])
+def eventDetails(request, pk):
+    try:
+        event = Event.objects.get(id=pk)
+    except Event.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+            
+    if request.method == 'GET':
+        serializer = EventSerializer(event, many=False)
+        return Response(serializer.data)
+    
+    elif request.method == 'PATCH':
+        serializer = EventSerializer(event, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    elif request.method == 'DELETE':
+        event.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-@api_view(['GET'])
-def getEvents(request):
-    events = Event.objects.all()
-    serializer = EventSerializer(events, many=True)
-    return Response(serializer.data)
 
-@api_view(['GET'])
-def getEvent(request, pk):
-    event = Event.objects.get(id=pk)
-    serializer = EventSerializer(event, many=False)
-    return Response(serializer.data)
+
 

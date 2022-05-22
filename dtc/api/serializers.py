@@ -13,7 +13,7 @@ class PersonSerializer(serializers.ModelSerializer):
     #     raise NotImplementedError('`update()` must be implemented.')
  
 class EventSerializer(serializers.ModelSerializer):
-    speakers = PersonSerializer(many=True)
+    # speakers = PersonSerializer(many=True)
     class Meta:
         model = Event
         fields = '__all__'

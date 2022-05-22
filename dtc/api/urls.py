@@ -10,6 +10,6 @@ urlpatterns = [
     path('people/', views.people),
     path('people/<str:pk>/', views.personDetails),
     
-    # path('events/', views.events),
-    # path('events/<str:pk>/', views.eventDetails)
+    path('events/', views.events),
+    path('events/<str:pk>/', views.eventDetails),
 ]

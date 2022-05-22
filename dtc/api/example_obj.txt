@@ -7,7 +7,25 @@ curl -X POST -H "Content-Type: application/json" \
     http://127.0.0.1:8000/api/people/
 
 
-curl -X PUT -H "Content-Type: application/json" \
-    -d id="valera" -d name="valera" http://127.0.0.1:8000/api/people/11aaaaaaa/
+###     curl -X PUT -H "Content-Type: application/json" \
+###     -d id="valera" -d name="valera" http://127.0.0.1:8000/api/people/11aaaaaaa/
 
 curl -X PATCH -H "Content-Type: application/json" -d '{"name":"SUKA"}' "http://127.0.0.1:8000/api/people/11aaaaaaa/"
+
+### event objects
+
+curl  http://127.0.0.1:8000/api/events/
+curl  http://127.0.0.1:8000/api/events/75/
+
+curl -X POST -H "Content-Type: application/json" \
+    -d '{
+        "time": "3021-06-21T17:00:00Z",
+        "title": "TEST EVENT BY LARISA",
+        "type": "webinar",
+        "event_link": "https://eventbrite.com",
+        "speakers": ["11aaaaaaa"]}' \
+    http://127.0.0.1:8000/api/events/
+
+curl -X DELETE  http://127.0.0.1:8000/api/events/75/
+
+        
