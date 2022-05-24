@@ -26,6 +26,14 @@ curl -X POST -H "Content-Type: application/json" \
         "speakers": ["11aaaaaaa"]}' \
     http://127.0.0.1:8000/api/events/
 
+
+curl -X PATCH -H "Content-Type: application/json" \
+    -d '{
+        "time": "2022-06-21T17:00:00Z",
+        "title": "TEST EVENT BY LARISA AND HER ALTEREGO"
+        }' \
+    http://127.0.0.1:8000/api/events/76/
+
 curl -X DELETE  http://127.0.0.1:8000/api/events/75/
 
         

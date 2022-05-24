@@ -12,4 +12,7 @@ urlpatterns = [
     
     path('events/', views.events),
     path('events/<str:pk>/', views.eventDetails),
+    
+    path('books/', views.books),
+    path('books/<str:pk>/', views.bookDetails),
 ]

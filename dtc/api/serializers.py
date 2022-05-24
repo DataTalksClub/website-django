@@ -1,19 +1,20 @@
 from rest_framework import serializers
-from root.models import Person, Event
+from root.models import Person, Event, Book
 
 class PersonSerializer(serializers.ModelSerializer):
     class Meta:
         model = Person
         fields = '__all__'
 
-    # def create(self, validated_data):
-    #     raise NotImplementedError('`create()` must be implemented.')
-
-    # def update(self, instance, validated_data):
-    #     raise NotImplementedError('`update()` must be implemented.')
- 
+    
 class EventSerializer(serializers.ModelSerializer):
-    # speakers = PersonSerializer(many=True)
+    # speakers = PersonSerializer(many=True, read_only=True)
     class Meta:
         model = Event
+        fields = '__all__'
+        
+class BookSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = Book
         fields = '__all__'
