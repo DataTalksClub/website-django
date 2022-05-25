@@ -2,8 +2,8 @@
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
-from .serializers import PersonSerializer, EventSerializer, BookSerializer
-from root.models import Person, Event, Book
+from .serializers import PersonSerializer, EventSerializer, BookSerializer, PodcastSerializer
+from root.models import Person, Event, Book, Podcast
 from rest_framework import status
 
 
@@ -158,6 +158,48 @@ def bookDetails(request, pk):
     elif request.method == 'DELETE':
         book.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+    
+    
+######## podcast views ########   
+@api_view(['GET', 'POST'])
+# @permission_classes([IsAuthenticated])
+def podcast(request):
+    if request.method == 'GET':
+        podcast = Podcast.objects.all()
+        serializer = PodcastSerializer(podcast, many=True)
+        return Response(serializer.data)
+    
+    if request.method == 'POST':
+        serializer = PodcastSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    
+@api_view(['GET', 'DELETE', 'PATCH'])
+def episodeDetails(request, pk):
+    try:
+        episode = Podcast.objects.get(id=pk)
+    except Podcast.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+            
+    if request.method == 'GET':
+        serializer = PodcastSerializer(episode, many=False)
+        return Response(serializer.data)
+    
+    elif request.method == 'PATCH':
+        serializer = EventSerializer(episode, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    elif request.method == 'DELETE':
+        episode.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
 
 
 

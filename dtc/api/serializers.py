@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from root.models import Person, Event, Book
+from root.models import Person, Event, Book, Podcast
 
 class PersonSerializer(serializers.ModelSerializer):
     class Meta:
@@ -17,4 +17,10 @@ class BookSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Book
+        fields = '__all__'
+        
+class PodcastSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = Podcast
         fields = '__all__'
