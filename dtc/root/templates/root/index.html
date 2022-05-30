@@ -48,7 +48,11 @@
         {{ post.title }} - {{ post.created_at }} <br>
     {% endfor %}
     <a href="books.html"><h3>Latest Books</h3></a>
-    {{ book.title }} <hr>
-    {{ book.description }}
+    {% if book != None %}
+        {{ book.title }} <hr>
+        {{ book.description }}
+    {% else %}
+        No books here
+    {% endif %}
 </body>
 </html>

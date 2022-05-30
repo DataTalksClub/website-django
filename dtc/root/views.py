@@ -10,7 +10,12 @@ def index(request):
     events_set = Event.objects.filter(time__gte=now).order_by('time')[:2]
     podcast = Podcast.objects.all()[0]
     posts_set = Post.objects.all()[:2]
-    book = Book.objects.filter(end_date__gte=now)[0]
+    books = Book.objects.filter(end_date__gte=now)
+    if len(books) == 0:
+        book = None
+    else:
+        book = books[0]
+    print('LOOK HERE ===>', book)
     context = {"events": events_set, "podcast": podcast, "posts": posts_set, "book": book}
     return render(request, 'root/index.html', context)
 

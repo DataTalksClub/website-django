@@ -18,4 +18,7 @@ urlpatterns = [
     
     path('podcast/', views.podcast),
     path('podcast/<str:pk>/', views.episodeDetails),
+    
+    path('blog/', views.blog),
+    path('blog/<str:pk>/', views.postDetails),
 ]
