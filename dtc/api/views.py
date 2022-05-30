@@ -229,7 +229,7 @@ def postDetails(request, pk):
         return Response(serializer.data)
     
     elif request.method == 'PATCH':
-        serializer = EventSerializer(post, data=request.data, partial=True)
+        serializer = PostSerializer(post, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
@@ -238,6 +238,212 @@ def postDetails(request, pk):
     elif request.method == 'DELETE':
         post.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+######## Tag views ########   
+@api_view(['GET', 'POST'])
+# @permission_classes([IsAuthenticated])
+def tags(request):
+    if request.method == 'GET':
+        tags = Tag.objects.all()
+        serializer = TagSerializer(tags, many=True)
+        return Response(serializer.data)
+    
+    if request.method == 'POST':
+        serializer = TagSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    
+@api_view(['GET', 'DELETE', 'PATCH'])
+def tagDetails(request, pk):
+    try:
+        tag = Tag.objects.get(id=pk)
+    except Tag.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+            
+    if request.method == 'GET':
+        serializer = TagSerializer(tag, many=False)
+        return Response(serializer.data)
+    
+    elif request.method == 'PATCH':
+        serializer = TagSerializer(tag, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    elif request.method == 'DELETE':
+        tag.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+######## Special post  views ########   
+@api_view(['GET', 'POST'])
+# @permission_classes([IsAuthenticated])
+def specialPosts(request):
+    if request.method == 'GET':
+        specialPosts = SpecialPost.objects.all()
+        serializer = SpecialPostSerializer(specialPosts, many=True)
+        return Response(serializer.data)
+    
+    if request.method == 'POST':
+        serializer = SpecialPostSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    
+@api_view(['GET', 'DELETE', 'PATCH'])
+def specialPostDetails(request, pk):
+    try:
+        specialPost = SpecialPost.objects.get(id=pk)
+    except SpecialPost.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+            
+    if request.method == 'GET':
+        serializer = SpecialPostSerializer(specialPost, many=False)
+        return Response(serializer.data)
+    
+    elif request.method == 'PATCH':
+        serializer = SpecialPostSerializer(specialPost, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    elif request.method == 'DELETE':
+        specialPost.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+########  Tool views ########   
+@api_view(['GET', 'POST'])
+# @permission_classes([IsAuthenticated])
+def tools(request):
+    if request.method == 'GET':
+        tools = Tool.objects.all()
+        serializer = ToolSerializer(tools, many=True)
+        return Response(serializer.data)
+    
+    if request.method == 'POST':
+        serializer = ToolSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    
+@api_view(['GET', 'DELETE', 'PATCH'])
+def toolDetails(request, pk):
+    try:
+        tool = Tool.objects.get(id=pk)
+    except Tool.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+            
+    if request.method == 'GET':
+        serializer = ToolSerializer(tool, many=False)
+        return Response(serializer.data)
+    
+    elif request.method == 'PATCH':
+        serializer = ToolSerializer(tool, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    elif request.method == 'DELETE':
+        tool.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+    
+    
+########  Course views ########   
+@api_view(['GET', 'POST'])
+# @permission_classes([IsAuthenticated])
+def courses(request):
+    if request.method == 'GET':
+        courses = Course.objects.all()
+        serializer = CourseSerializer(courses, many=True)
+        return Response(serializer.data)
+    
+    if request.method == 'POST':
+        serializer = CourseSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    
+@api_view(['GET', 'DELETE', 'PATCH'])
+def courseDetails(request, pk):
+    try:
+        course = Course.objects.get(id=pk)
+    except Course.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+            
+    if request.method == 'GET':
+        serializer = CourseSerializer(course, many=False)
+        return Response(serializer.data)
+    
+    elif request.method == 'PATCH':
+        serializer = CourseSerializer(course, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    elif request.method == 'DELETE':
+        course.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+    
+    
+########  Sponsor views ########   
+@api_view(['GET', 'POST'])
+# @permission_classes([IsAuthenticated])
+def sponsors(request):
+    if request.method == 'GET':
+        sponsors = Sponsor.objects.all()
+        serializer = SponsorSerializer(tools, many=True)
+        return Response(serializer.data)
+    
+    if request.method == 'POST':
+        serializer = SponsorSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    
+@api_view(['GET', 'DELETE', 'PATCH'])
+def sponsorDetails(request, pk):
+    try:
+        sponsor = Sponsor.objects.get(id=pk)
+    except Sponsor.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+            
+    if request.method == 'GET':
+        serializer = SponsorSerializer(sponsor, many=False)
+        return Response(serializer.data)
+    
+    elif request.method == 'PATCH':
+        serializer = SponsorSerializer(sponsor, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    elif request.method == 'DELETE':
+        sponsor.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+    
+    
+
+    
+    
+
 
 
 

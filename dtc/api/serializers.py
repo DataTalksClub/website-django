@@ -62,7 +62,7 @@ class CourseSerializer(serializers.ModelSerializer):
         fields = '__all__'
         
 
-class SponsortSerializer(serializers.ModelSerializer):
+class SponsorSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Sponsor

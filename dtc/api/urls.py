@@ -21,4 +21,19 @@ urlpatterns = [
     
     path('blog/', views.blog),
     path('blog/<str:pk>/', views.postDetails),
+    
+    path('tags/', views.tags),
+    path('tags/<str:pk>/', views.tagDetails),
+    
+    path('special-posts/', views.specialPosts),
+    path('special-posts/<str:pk>/', views.specialPostDetails),
+    
+    path('tools/', views.tools),
+    path('tools/<str:pk>/', views.toolDetails),
+    
+    path('courses/', views.courses),
+    path('courses/<str:pk>/', views.coursesDetails),
+    
+    path('sponsors/', views.sponsors),
+    path('sponsors/<str:pk>/', views.sponsorsDetails),
 ]
