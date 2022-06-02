@@ -6,12 +6,15 @@ class PersonSerializer(serializers.ModelSerializer):
         model = Person
         fields = '__all__'
 
+
+
     
 class EventSerializer(serializers.ModelSerializer):
     # speakers = PersonSerializer(many=True, read_only=True)
     class Meta:
         model = Event
         fields = '__all__'
+        
         
 class BookSerializer(serializers.ModelSerializer):
     

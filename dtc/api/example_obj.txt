@@ -6,9 +6,9 @@ curl -X POST -H "Content-Type: application/json" \
         "socials":"oooooooooooo"}' \
     http://127.0.0.1:8000/api/people/
 
-
-###     curl -X PUT -H "Content-Type: application/json" \
-###     -d id="valera" -d name="valera" http://127.0.0.1:8000/api/people/11aaaaaaa/
+Somth might be wrong here
+curl -X PUT -H "Content-Type: application/json" \
+    -d id="valera" -d name="valera" http://127.0.0.1:8000/api/people/11aaaaaaa/
 
 curl -X PATCH -H "Content-Type: application/json" -d '{"name":"SUKA"}' "http://127.0.0.1:8000/api/people/11aaaaaaa/"
 
@@ -47,34 +47,64 @@ curl -X POST -H "Content-Type: application/json" \
         "authors": ["11aaaaaaa"],
         "cover_image": "https://eventbrite.com",
         "preview_image": "https://eventbrite.com",
-        "start_date": "19.05.2022",
-        "end_date": "25.05.2022",
+        "start_date": "2022-05-22",
+        "end_date": "2022-06-22",
         "links": [
         {
             "text": "TEST",
-            "link": "https://www.oreilly.com/library/view/machine-learning-design/9781098115777/"
+            "link": "https://www.oreilly.com"
         },
         {
             "text": "TEST",
-            "link": "https://github.com/GoogleCloudPlatform/ml-design-patterns"
-        },
+            "link": "https://github.com"
+        }
+    ],
         "archive": [
         {
-            "name": "Denis Lepchev",
-            "text": "Hi Mike Munn - thank you and your colleagues for such a great book!\nI have a question regarding the \"continued model evaluation\" design pattern. As you mention in the book, usually we act on the model's predictions - as an example trying to prevent customer's churn.\nHow companies like Google deal with the feedback loops, when acting on the model's prediction changes the outcome, making it impossible to observe the ground truth? Many books and articles mention this problem, but the solution is not discussed.\nOne of the solutions I am aware of is to have a small (untouched) hold-out group as a basis for model evaluation and for re-training, but it comes with its own set of problems. Is there an alternative method(s)?",
+            "name": "TEST",
+            "text": "Hi TEST - TEST  (untouched) hold-out method(s)?",
             "replies": [
                 {
-                    "name": "Mike Munn",
-                    "text": "Hi Denis Lepchev thanks!\nYou bring up a really good point about ‘feedback loops’ when dealing with continued model evaluation. There is a lot written about this. I remember reading an article about a company called Stripe that discussed this problem for them in some detail for a credit fraud model they had developed.\nWe discuss this briefly in the subsection called “Capturing ground truth” as well as other considerations. You mention a good approach. Another technique to consider is to use causal impact models. Causal impact uses Bayesian techniques to understand how a certain “treatment” might have affected a population. It’s commonly used in scenarios where it’s not possible (or not ethical) to have a hold out or control group. This is commonly used at Google and that team has open sourced a CausalImpact package you might want to check out."
+                    "name": "TEST",
+                    "text": "TEST!\nYou  possible (or not ethical) control group. This is."
                 },
                 {
-                    "name": "Denis Lepchev",
-                    "text": "Thank you for the answer, Mike."
+                    "name": "TEST",
+                    "text": "TEST."
                 }
             ]
-        }]
+        }
     ]
+    
         
-        }' \
+    }' \
     http://127.0.0.1:8000/api/books/
+
+
+curl  http://127.0.0.1:8000/api/books/
+curl  http://127.0.0.1:8000/api/books/testtesttest/
+
+curl -X PATCH -H "Content-Type: application/json" \
+    -d '{
+        "end_date": "2022-06-21",
+        "title": "TEST BOOK BY LARISA AND HER ALTEREGO"
+        }' \
+    http://127.0.0.1:8000/api/books/testtesttest/
+
+curl -X PATCH http://127.0.0.1:8000/api/books/testtesttest/\
+     -H 'Content-Type: application/json'\
+     -H 'Accept: application/json'\
+     -d '{
+        "id": "testtesttest", 
+        "description": "ugh",
+        "cover_image": "https://ev",
+        "preview_image": "https://ev",
+        "start_date": "2022-05-20"
+    }'
+
+curl -X DELETE  http://127.0.0.1:8000/api/books/testtesttest/
+
+
+
+
         

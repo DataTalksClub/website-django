@@ -32,8 +32,8 @@ urlpatterns = [
     path('tools/<str:pk>/', views.toolDetails),
     
     path('courses/', views.courses),
-    path('courses/<str:pk>/', views.coursesDetails),
+    path('courses/<str:pk>/', views.courseDetails),
     
     path('sponsors/', views.sponsors),
-    path('sponsors/<str:pk>/', views.sponsorsDetails),
+    path('sponsors/<str:pk>/', views.sponsorDetails),
 ]
