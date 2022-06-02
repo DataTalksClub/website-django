@@ -149,7 +149,7 @@ def bookDetails(request, pk):
         return Response(serializer.data)
     
     elif request.method == 'PATCH':
-        serializer = EventSerializer(book, data=request.data, partial=True)
+        serializer = BookSerializer(book, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
