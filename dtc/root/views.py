@@ -17,7 +17,7 @@ def index(request):
         book = books[0]
     print('LOOK HERE ===>', book)
     context = {"events": events_set, "podcast": podcast, "posts": posts_set, "book": book}
-    return render(request, 'root/index.html', context)
+    return render(request, 'root/index1.html', context)
 
 def person(request, pk):
     person = Person.objects.get(id=pk)
